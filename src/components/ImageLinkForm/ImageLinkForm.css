@@ -1,0 +1,8 @@
+.form{
+	width:700px;
+}
+.center{
+background-color: #e5e5f7;
+opacity: 0.8;
+background: repeating-linear-gradient( 45deg, #f2fcd9, #f2fcd9 5px, #e5e5f7 5px, #e5e5f7 25px );
+}
