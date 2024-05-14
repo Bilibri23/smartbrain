@@ -10,9 +10,6 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition'
 import './App.css';
 
 
-const app = new Clarifai.App({
-  apiKey: '60dc58692e9f4dd9867759d2ca8693b1'
-});
 
 class App extends Component {
   constructor(){
@@ -25,7 +22,10 @@ class App extends Component {
   }
 
   calculateFaceLocation =(data)=>{
+    console.log(data)
     const  clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+    console.log(data)
+
     const image = document.getElementById('inputimage');
     const width = Number(image.width);
     const height = Number(image.height);
@@ -63,7 +63,7 @@ class App extends Component {
       },              
       ],
     });
-    
+
     const requestOptions = {
     method: 'POST',
     headers: {
@@ -75,6 +75,7 @@ class App extends Component {
     fetch("https://api.clarifai.com/v2/models/face-detection/outputs" ,requestOptions)
     .then((response)=>response.json())
     .then(result=>this.displayFaceBox(this.calculateFaceLocation(result)))
+    .catch(console.log)
     .catch(err=>console.log("oops", err));
 
   }
